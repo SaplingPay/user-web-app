@@ -1,7 +1,9 @@
 import { DownCircleOutlined } from '@ant-design/icons'
 import React from 'react'
 
-type Props = {}
+type Props = {
+    menuId: any
+}
 
 const RestaurantInfo = (props: Props) => {
     return (

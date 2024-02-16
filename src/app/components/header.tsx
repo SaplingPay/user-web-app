@@ -1,7 +1,9 @@
 import { Button, Tag } from 'antd'
 import React from 'react'
 
-type Props = {}
+type Props = {
+    menuId: any
+}
 
 const Header = (props: Props) => {
     return (

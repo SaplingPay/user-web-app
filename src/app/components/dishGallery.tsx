@@ -10,7 +10,8 @@ const DB_STORAGE_URL = "https://pcymmfzjvqqszeimvekz.supabase.co/storage/v1/obje
 
 type Props = {
     menuItems: any,
-    menuId: any
+    menuId: any,
+    filter: any
 }
 
 const DishGallery = (props: Props) => {
@@ -20,7 +21,7 @@ const DishGallery = (props: Props) => {
     return (
         <div>
             <Card>
-                {menuItems.map((item) => {
+                {menuItems.map((item: any) => {
                     return (
                         <Card.Grid key={item.uuid} style={gridStyle} hoverable={false}>
                             <Link href={`/view/menu/${menuId}/item/${item.uuid}`}>

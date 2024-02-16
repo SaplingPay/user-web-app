@@ -6,13 +6,15 @@ import { Button, FloatButton, Image, Tag } from 'antd'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
-type Props = {}
+type Props = {
+    params: any
+}
 const DB_STORAGE_URL = "https://pcymmfzjvqqszeimvekz.supabase.co/storage/v1/object/public/menu-assets/"
 
 export default function ItemPage(props: Props) {
     const menuId = props.params.menuId
     const itemId = props.params.itemId
-    const [item, setItem] = useState()
+    const [item, setItem] = useState<any>()
 
     useEffect(() => {
         const loadMenuItem = async () => {
