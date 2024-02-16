@@ -9,7 +9,8 @@ const gridStyle: React.CSSProperties = {
 const DB_STORAGE_URL = "https://pcymmfzjvqqszeimvekz.supabase.co/storage/v1/object/public/menu-assets/"
 
 type Props = {
-    testAmount: number
+    menuItems: any,
+    menuId: any
 }
 
 const DishGallery = (props: Props) => {
