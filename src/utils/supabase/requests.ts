@@ -1,7 +1,7 @@
 import { supabaseClient, supabaseClientAnon } from "./client"
 import { v4 as uuidv4 } from 'uuid';
 
-export const getMenus = async({userId, token}) => {
+export const getMenus = async({token}: any) => {
     const supabase = await supabaseClient(token);
     const {data: menus} = await supabase.from("Menus").select("*")
 
@@ -15,7 +15,7 @@ export const getMenusAnon = async() => {
     return menus
 }
 
-export const createMenu = async({userId, token, title}) => {
+export const createMenu = async({userId, token, title}: any) => {
     const supabase = await supabaseClient(token);
     const {data, error} = await supabase
         .from("Menus")
@@ -32,28 +32,28 @@ export const createMenu = async({userId, token, title}) => {
     return data;
 }
 
-export const getMenuItems = async({userId, token, menuId}) => {
+export const getMenuItems = async({token, menuId} : any) => {
     const supabase = await supabaseClient(token);
     const {data: menuItems} = await supabase.from("MenuItems").select("*").eq('menu', menuId)
 
     return menuItems
 }
 
-export const getMenuItemsAnon = async({menuId}) => {
+export const getMenuItemsAnon = async({menuId} : any) => {
     const supabase = await supabaseClientAnon();
     const {data: menuItems} = await supabase.from("MenuItems").select("*").eq('menu', menuId)
 
     return menuItems
 }
 
-export const getMenuItemAnon = async({itemId}) => {
+export const getMenuItemAnon = async({itemId} : any) => {
     const supabase = await supabaseClientAnon();
     const {data: menuItem} = await supabase.from("MenuItems").select("*").eq('uuid', itemId)
 
     return menuItem
 }
 
-export const getFile = async({token, path}) => {
+export const getFile = async({token, path} : any) => {
     const supabase = await supabaseClient(token);
 
     const { data } = supabase
@@ -63,7 +63,7 @@ export const getFile = async({token, path}) => {
     return data
 }
 
-export const uploadFile = async({userId, token, fileName, file}) => {
+export const uploadFile = async({userId, token, fileName, file} : any) => {
     console.log(fileName, file)
     const supabase = await supabaseClient(token);
     // Use the JS library to create a bucket.
@@ -83,7 +83,7 @@ export const uploadFile = async({userId, token, fileName, file}) => {
     return data;    
 }
 
-export const createMenuItem = async({userId, token, name, description, price, menuUuid, imageUuid, imageURL}) => {
+export const createMenuItem = async({userId, token, name, description, price, menuUuid, imageUuid, imageURL}: any) => {
     const supabase = await supabaseClient(token);
     const {data, error} = await supabase
         .from("MenuItems")
