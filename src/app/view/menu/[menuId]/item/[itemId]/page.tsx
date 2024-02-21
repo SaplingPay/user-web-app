@@ -1,9 +1,9 @@
 'use client'
-import Footer from '@/app/components/Footer'
 import { getMenuItemAnon } from '@/utils/supabase/requests'
 import { ArrowLeftOutlined, ArrowRightOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 import { Button, FloatButton, Image, Tag } from 'antd'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 type Props = {
@@ -15,6 +15,7 @@ export default function ItemPage(props: Props) {
     const menuId = props.params.menuId
     const itemId = props.params.itemId
     const [item, setItem] = useState<any>()
+    const { push } = useRouter();
 
     useEffect(() => {
         const loadMenuItem = async () => {
@@ -28,7 +29,24 @@ export default function ItemPage(props: Props) {
                 })
         }
         loadMenuItem()
+
     }, [])
+
+    const getOrder = () => {
+        return window.localStorage.getItem('order') ? JSON.parse(window.localStorage.getItem('order') as any) : []
+    }
+    const updateOrder = (or: any[]) => {
+        window.localStorage.setItem('order', JSON.stringify(or))
+    }
+
+
+    const addToOrder = () => {
+        const or = getOrder()
+        const updatedOr = [...or, { id: itemId, quantity: 1 }]
+        console.log("order", getOrder())
+        updateOrder(updatedOr)
+        push(`/view/menu/${menuId}/order`)
+    }
 
     return (
         (item ?
@@ -36,9 +54,10 @@ export default function ItemPage(props: Props) {
                 <div>
                     <Link href={`/view/menu/${menuId}`}><FloatButton icon={<ArrowLeftOutlined />} style={{ left: 24, top: 20 }} /></Link>
                     <Image
-                        height={"60vh"}
+                        style={{ maxHeight: "60vh", width: "100%" }}
                         src={DB_STORAGE_URL + item.image_url}
                         preview={false}
+                        width="100%"
                     />
                 </div>
                 <div style={{ padding: "2vh 2vh 0 2vh ", marginBottom: "0" }}>
@@ -79,7 +98,24 @@ export default function ItemPage(props: Props) {
             </div> */}
 
                 <div style={{ width: "100%", height: "10vh", backgroundColor: "white" }}></div>
-                <Link href={"/order"}><Footer>Add to order</Footer></Link>
+                {/* <Link href={"/order"}></Link> */}
+                <div style={{ width: "100%", display: "flex", position: "fixed", bottom: "0", height: "8vh", backgroundColor: "white" }}>
+                    <Button
+                        onClick={addToOrder}
+                        type="primary"
+                        style={{
+                            width: "80%",
+                            textAlign: "center",
+                            backgroundColor: "black",
+                            fontSize: "2.5vh",
+                            borderRadius: "10px",
+                            margin: "auto",
+                            height: "75%"
+                        }}
+                    >
+                        Add to order
+                    </Button>
+                </div>
             </div>
 
             : "")

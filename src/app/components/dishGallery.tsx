@@ -9,13 +9,13 @@ const gridStyle: React.CSSProperties = {
 const DB_STORAGE_URL = "https://pcymmfzjvqqszeimvekz.supabase.co/storage/v1/object/public/menu-assets/"
 
 type Props = {
-    menuItems: any,
+    menuItems: any[],
     menuId: any,
     filter: any
 }
 
 const DishGallery = (props: Props) => {
-    const menuItems = props.menuItems
+    const menuItems = props.filter === "overview" ? props.menuItems : props.menuItems.filter(i => i.categories == props.filter)
     const menuId = props.menuId
 
     return (

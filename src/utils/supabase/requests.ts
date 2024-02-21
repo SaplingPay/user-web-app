@@ -32,6 +32,13 @@ export const createMenu = async({userId, token, title}: any) => {
     return data;
 }
 
+export const getMenuAnon = async({menuId} : any) => {
+    const supabase = await supabaseClientAnon();
+    const {data: menuItems} = await supabase.from("Menus").select("*").eq('uuid', menuId)
+
+    return menuItems
+}
+
 export const getMenuItems = async({token, menuId} : any) => {
     const supabase = await supabaseClient(token);
     const {data: menuItems} = await supabase.from("MenuItems").select("*").eq('menu', menuId)
@@ -42,6 +49,13 @@ export const getMenuItems = async({token, menuId} : any) => {
 export const getMenuItemsAnon = async({menuId} : any) => {
     const supabase = await supabaseClientAnon();
     const {data: menuItems} = await supabase.from("MenuItems").select("*").eq('menu', menuId)
+
+    return menuItems
+}
+
+export const getMenuCategoriesAnon = async({menuId} : any) => {
+    const supabase = await supabaseClientAnon();
+    const {data: menuItems} = await supabase.from("MenuCategories").select("*").eq('menu', menuId)
 
     return menuItems
 }
