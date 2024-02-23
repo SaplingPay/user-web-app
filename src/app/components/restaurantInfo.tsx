@@ -37,12 +37,12 @@ const RestaurantInfo = (props: Props) => {
                 <h1 style={{ marginBottom: "0", marginTop: "0" }}>{menu ? menu.title : ""}</h1>
                 <div className="stars">🌱☕🍹💪🌍</div>
                 <div style={{ marginLeft: "auto", marginBottom: "auto", marginTop: "0.5em", textAlign: "right", paddingRight: "2vh", display: "flex" }}>
-                    <DownCircleFilled />
+                    <DownCircleOutlined />
                     <div className="location" style={{ marginLeft: "1vw" }}>{menu ? menu.location : ""}</div>
                 </div>
             </div>
             <div style={{ marginLeft: "auto", marginRight: "1em" }}>
-                <Button size='large' style={{ backgroundColor: "black", color: "white" }}>
+                <Button size='large' style={{ backgroundColor: "white", color: "black" }}>
                     <FilterOutlined />
                 </Button>
             </div>
