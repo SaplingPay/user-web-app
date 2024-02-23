@@ -1,6 +1,6 @@
 import { Menu } from '@/models/models'
 import { getMenuAnon } from '@/utils/supabase/requests'
-import { DownCircleOutlined, FilterOutlined } from '@ant-design/icons'
+import { DownCircleFilled, DownCircleOutlined, FilterOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import React, { useEffect, useState } from 'react'
 
@@ -32,12 +32,12 @@ const RestaurantInfo = (props: Props) => {
     }, [])
 
     return (
-        <div style={{ display: "flex", padding: "1vh 1vh 0 1vh", height: "4em" }}>
+        <div style={{ display: "flex", padding: "1vh 1vh 0 1vh", height: "6em", marginBottom: ".25em" }}>
             <div>
                 <h1 style={{ marginBottom: "0", marginTop: "0" }}>{menu ? menu.title : ""}</h1>
-                {/* <div className="stars">⭐️⭐️⭐️⭐️⭐️</div> */}
+                <div className="stars">🌱☕🍹💪🌍</div>
                 <div style={{ marginLeft: "auto", marginBottom: "auto", marginTop: "0.5em", textAlign: "right", paddingRight: "2vh", display: "flex" }}>
-                    <DownCircleOutlined />
+                    <DownCircleFilled />
                     <div className="location" style={{ marginLeft: "1vw" }}>{menu ? menu.location : ""}</div>
                 </div>
             </div>
