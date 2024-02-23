@@ -71,7 +71,7 @@ const MenuCategories = (props: Props) => {
             menuItems
                 .then(res => {
 
-                    // console.log("owkring", res)
+                    console.log("owkring", res)
                     if (res instanceof Array) {
                         setMenuItems(res)
                         // console.log("owkring 1", res)
@@ -114,14 +114,14 @@ const MenuCategories = (props: Props) => {
                             children: <DishGallery filter={"overview"} menuItems={menuItems} menuId={menuId} />,
                         }
                     }),
-                    // ...[categories].map((cat, i) => {
-                    //     const id = String(i + 1);
-                    //     return {
-                    //         key: id,
-                    //         label: <TabLabel>{cat}</TabLabel>,
-                    //         children: <DishGallery filter={cat} menuItems={menuItems} menuId={menuId} />,
-                    //     }
-                    // }),
+                    ...[...categories].map((cat, i) => {
+                        const id = String(i + 1);
+                        return {
+                            key: id,
+                            label: <TabLabel>{cat}</TabLabel>,
+                            children: <DishGallery filter={cat} menuItems={menuItems} menuId={menuId} />,
+                        }
+                    }),
 
                 ]}
             />

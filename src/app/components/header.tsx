@@ -33,7 +33,7 @@ const Header = (props: Props) => {
 
     return (
         <div style={{ width: "100%", height: "30vh", position: "relative" }}>
-            <Tag
+            {/* <Tag
                 style={{
                     position: "absolute",
                     top: "24vh",
@@ -43,7 +43,7 @@ const Header = (props: Props) => {
                     padding: ".5em",
                     fontStyle: "italic",
                     borderRadius: "15px"
-                }}>Ordering for Table #21</Tag>
+                }}>Ordering for Table #21</Tag> */}
             {menu ? <img
                 src={menu.banner_url ? DEFAULT_URL + menu.banner_url : "/banner1.png"}
                 style={{ height: "100%", width: "100%", objectFit: "cover", zIndex: "1" }}

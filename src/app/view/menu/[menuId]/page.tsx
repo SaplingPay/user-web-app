@@ -54,7 +54,7 @@ const MenuPage = (props: Props) => {
             <Header menuId={menuId} />
             <RestaurantInfo menuId={menuId} />
             <MenuCategories menuId={menuId} />
-            <Link href={`/view/menu/${menuId}/order`}><Footer>View order</Footer></Link>
+            {/* <Link href={`/view/menu/${menuId}/order`}><Footer>View order</Footer></Link> */}
         </main>
     )
 }

@@ -52,7 +52,7 @@ export default function ItemPage(props: Props) {
         (item ?
             <div style={{ display: "flex", flexDirection: "column", fontFamily: "sans-serif" }}>
                 <div>
-                    <Link href={`/view/menu/${menuId}`}><FloatButton icon={<ArrowLeftOutlined />} style={{ left: 24, top: 20 }} /></Link>
+                    <Link href={`/view/menu/${menuId}`}><FloatButton icon={<ArrowLeftOutlined />} style={{ left: 24, top: 20, height: "5em", width: "5em" }} /></Link>
                     <Image
                         style={{ maxHeight: "60vh", width: "100%" }}
                         src={DB_STORAGE_URL + item.image_url}
@@ -99,7 +99,7 @@ export default function ItemPage(props: Props) {
 
                 <div style={{ width: "100%", height: "10vh", backgroundColor: "white" }}></div>
                 {/* <Link href={"/order"}></Link> */}
-                <div style={{ width: "100%", display: "flex", position: "fixed", bottom: "0", height: "8vh", backgroundColor: "white" }}>
+                {/* <div style={{ width: "100%", display: "flex", position: "fixed", bottom: "0", height: "8vh", backgroundColor: "white" }}>
                     <Button
                         onClick={addToOrder}
                         type="primary"
@@ -115,7 +115,7 @@ export default function ItemPage(props: Props) {
                     >
                         Add to order
                     </Button>
-                </div>
+                </div> */}
             </div>
 
             : "")

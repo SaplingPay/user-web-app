@@ -36,7 +36,7 @@ const DishGallery = (props: Props) => {
                     )
                 })}
             </Card>
-            <div style={{ width: "100%", height: "8vh", backgroundColor: "white" }}></div>
+            {/* <div style={{ width: "100%", height: "8vh", backgroundColor: "white" }}></div> */}
         </div>
     )
 }
