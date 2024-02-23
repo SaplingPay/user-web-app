@@ -1,6 +1,7 @@
 import { Menu } from '@/models/models'
 import { getMenuAnon } from '@/utils/supabase/requests'
-import { Spin, Tag } from 'antd'
+import { InfoCircleFilled, InfoCircleOutlined } from '@ant-design/icons'
+import { Spin, Tag, FloatButton } from 'antd'
 import React, { useEffect, useState } from 'react'
 
 type Props = {
@@ -44,6 +45,7 @@ const Header = (props: Props) => {
                     fontStyle: "italic",
                     borderRadius: "15px"
                 }}>Ordering for Table #21</Tag> */}
+            {/* <FloatButton icon={<InfoCircleOutlined />} style={{ right: 24, top: 20, height: "3em", width: "3em" }} /> */}
             {menu ? <img
                 src={menu.banner_url ? DEFAULT_URL + menu.banner_url : "/banner1.png"}
                 style={{ height: "100%", width: "100%", objectFit: "cover", zIndex: "1" }}
