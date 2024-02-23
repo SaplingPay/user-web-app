@@ -52,7 +52,7 @@ export default function ItemPage(props: Props) {
         (item ?
             <div style={{ display: "flex", flexDirection: "column", fontFamily: "sans-serif" }}>
                 <div>
-                    <Link href={`/view/menu/${menuId}`}><FloatButton icon={<ArrowLeftOutlined />} style={{ left: 24, top: 20, height: "5em", width: "5em" }} /></Link>
+                    <Link href={`/view/menu/${menuId}`}><FloatButton icon={<ArrowLeftOutlined />} style={{ left: 12, top: 20, height: "5em", width: "5em" }} /></Link>
                     <Image
                         style={{ maxHeight: "60vh", width: "100%" }}
                         src={DB_STORAGE_URL + item.image_url}
