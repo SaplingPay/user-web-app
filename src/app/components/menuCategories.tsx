@@ -17,38 +17,6 @@ function TabLabel({
         <div style={{ paddingLeft: "10px", paddingRight: "10px", }}>{children}</div>
     )
 }
-// const items: TabsProps['items'] = [
-//     {
-//         key: '1',
-//         label: <TabLabel>Overview</TabLabel>,
-//         children: <DishGallery filter="Overview" />
-//     },
-//     {
-//         key: '2',
-//         label: <TabLabel>Specials</TabLabel>,
-//         children: <DishGallery filter="Special" testAmount={1} />
-//     },
-//     {
-//         key: '3',
-//         label: <TabLabel>Appetizers</TabLabel>,
-//         children: <DishGallery filter="Appetizers" testAmount={3} />
-//     },
-//     {
-//         key: '4',
-//         label: <TabLabel>Main Dishes</TabLabel>,
-//         children: <DishGallery filter="Main-Dishes" testAmount={4} />
-//     },
-//     {
-//         key: '5',
-//         label: <TabLabel>Sides</TabLabel>,
-//         children: <DishGallery filter="Sides" testAmount={7} />
-//     },
-//     {
-//         key: '6',
-//         label: <TabLabel>Drinks</TabLabel>,
-//         children: <DishGallery filter="Drinks" testAmount={10} />
-//     },
-// ];
 
 const MenuCategories = (props: Props) => {
     const menuId = props.menuId
@@ -70,11 +38,8 @@ const MenuCategories = (props: Props) => {
             const menuItems = getMenuItemsAnon({ menuId })
             menuItems
                 .then(res => {
-
-                    console.log("owkring", res)
                     if (res instanceof Array) {
                         setMenuItems(res)
-                        // console.log("owkring 1", res)
                         if (categories.length === 0) {
                             const cats = res.filter((iCat: any) => iCat?.categories).map(i => i.categories)
                             console.log('cats', cats)
@@ -86,16 +51,6 @@ const MenuCategories = (props: Props) => {
 
                     }
                 })
-            // console.log(menuId)
-            // const menuCategories = getMenuCategoriesAnon({ menuId })
-            // menuCategories
-            //     .then(res => {
-            //         console.log("cat: ", res)
-            //         // if (res instanceof Array) {
-            //         //     setMenuItems(res)
-            //         // }
-            //     })
-
         }
         loadMenuItems()
     }, [props])
@@ -105,7 +60,6 @@ const MenuCategories = (props: Props) => {
             <Tabs
                 defaultActiveKey="0"
                 onChange={onChange}
-                // items={items}
                 items={[
                     ...[1].map((_, i) => {
                         return {

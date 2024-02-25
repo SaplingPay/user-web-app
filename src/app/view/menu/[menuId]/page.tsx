@@ -8,8 +8,6 @@ import { createClient } from '@supabase/supabase-js'
 
 import { useEffect, useState } from "react";
 import { useOrderStore } from "@/utils/provider/order-store-provider";
-import { Button } from "antd";
-import { MenuItem } from "@/models/models";
 
 
 type Props = { params: any }
@@ -49,13 +47,17 @@ const MenuPage = (props: Props) => {
     }, [])
 
 
+
+
+
     return (
         <main style={{ display: "flex", flexDirection: "column", overflow: "hidden", fontFamily: "sans-serif" }}>
             <Header menuId={menuId} />
             <RestaurantInfo menuId={menuId} />
             <MenuCategories menuId={menuId} />
             {/* <Link href={`/view/menu/${menuId}/order`}><Footer>View order</Footer></Link> */}
-        </main>
+
+        </main >
     )
 }
 

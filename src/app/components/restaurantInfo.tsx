@@ -1,8 +1,13 @@
 import { Menu } from '@/models/models'
 import { getMenuAnon } from '@/utils/supabase/requests'
-import { DownCircleFilled, DownCircleOutlined, FilterOutlined } from '@ant-design/icons'
-import { Button } from 'antd'
+import { CheckOutlined, DownCircleFilled, DownCircleOutlined, DownOutlined, FilterOutlined } from '@ant-design/icons'
+import { Button, Drawer, FloatButton, Space } from 'antd'
 import React, { useEffect, useState } from 'react'
+
+import ItemDrawer from "@/app/components/itemDrawer";
+import type { DrawerClassNames, DrawerStyles } from 'antd/es/drawer/DrawerPanel';
+import { createStyles, useTheme } from 'antd-style';
+import FilterDrawer from './filterDrawer'
 
 type Props = {
     menuId: any
@@ -31,6 +36,34 @@ const RestaurantInfo = (props: Props) => {
 
     }, [])
 
+    const [visible, setVisible] = useState(false)
+
+    const useStyle = createStyles(() => ({
+        'my-drawer-header': {
+            background: "green",
+        },
+        'my-drawer-body': {
+            background: "blue",
+        },
+    }));
+
+    const { styles } = useStyle();
+
+    const classNames: DrawerClassNames = {
+        header: styles['my-drawer-header'],
+        body: styles['my-drawer-body'],
+
+    };
+
+    const drawerStyles: DrawerStyles = {
+        header: {
+            display: "none",
+        },
+        body: {
+            padding: 0,
+        },
+    };
+
     return (
         <div style={{ display: "flex", padding: "1vh 1vh 0 1vh", height: "6em", marginBottom: ".25em" }}>
             <div>
@@ -41,11 +74,36 @@ const RestaurantInfo = (props: Props) => {
                     <div className="location" style={{ marginLeft: "1vw" }}>{menu ? menu.location : ""}</div>
                 </div>
             </div>
-            <div style={{ marginLeft: "auto", marginRight: "1em" }}>
-                <Button size='large' style={{ backgroundColor: "white", color: "black" }}>
-                    <FilterOutlined />
+            <div style={{ marginLeft: "auto", marginRight: "0" }}>
+                <Button style={{ backgroundColor: "white", color: "black" }} onClick={() => setVisible(true)}>
+                    <FilterOutlined /> Preferences
                 </Button>
             </div>
+
+            <Drawer
+                title={null}
+                placement="bottom"
+                height="80%"
+                closable={true}
+                open={visible}
+                key="bottom"
+                onClose={() => setVisible(false)}
+                styles={drawerStyles}
+
+            // extra={
+            //     <Space>
+            //         <Button type="primary" onClick={() => setVisible(false)}>
+            //             Add to Order
+            //         </Button>
+            //     </Space>
+            // }
+            >
+                <FloatButton
+                    icon={<CheckOutlined />}
+                    style={{ top: "2em", right: "1em", position: "absolute" }}
+                    onClick={() => setVisible(false)} />
+                <FilterDrawer />
+            </Drawer>
 
 
         </div>
