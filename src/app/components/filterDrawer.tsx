@@ -60,7 +60,7 @@ const FilterDrawer = (props: Props) => {
                     ))}
                 </Space>
 
-                <Title level={4} style={{ color: "red" }}>I'm Avoiding</Title>
+                <Title level={4} style={{ color: "red" }}>{"I'm Avoiding"}</Title>
                 <Space size={[0, 8]} wrap>
                     {['Gluten', 'Dairy', 'Soy', 'Spicy', 'Nuts'].map((tag) => (
                         <CheckableTag
