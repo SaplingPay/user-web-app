@@ -102,7 +102,7 @@ const RestaurantInfo = (props: Props) => {
                     icon={<CloseOutlined />}
                     style={{ top: "1em", right: "1em", position: "absolute" }}
                     onClick={() => setVisible(false)} />
-                <FilterDrawer />
+                <FilterDrawer setVisible={setVisible} />
             </Drawer>
 
 
