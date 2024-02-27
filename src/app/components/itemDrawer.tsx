@@ -34,7 +34,7 @@ const ItemDrawer = (props: Props) => {
                     <p style={{ color: "gray" }}>{props.item.description}</p>
 
                     <div>
-                        {[{ name: "Vegan", color: "green" }, { name: "Vegaterian", color: "green" }, { name: "Spicy", color: "volcano" }].map((tag: any) => {
+                        {[{ name: "Vegan", color: "green" }, { name: "Vegaterian", color: "green" }, { name: "Warm", color: "volcano" }].map((tag: any) => {
                             return (
                                 <Tag key={`${tag.name}-${tag.color}`} color={tag.color} style={{ margin: ".2em" }}><p style={{ margin: ".2em .3em", fontSize: "1.1em" }}>{tag.name}</p></Tag>
                             )
@@ -54,21 +54,9 @@ const ItemDrawer = (props: Props) => {
                     {/* <h4 style={{ marginBottom: ".5em" }}>Dietary Restrictions / Allergens</h4> */}
 
                     <h4 style={{ marginBottom: ".5em" }}>Ingredients</h4>
-                    {["Tomatoes",
-                        "Basil",
-                        "Chicken breast",
-                        "Rice",
-                        "Almonds",
-                        "Mozzarella cheese",
-                        "Black beans",
-                        "Quinoa",
-                        "Salmon",
-                        "Spinach",
-                        "Garlic",
-                        "Olive oil",
-                        "Lemons",
-                        "Avocado",
-                        "Sweet potatoes"].map((ingredient: any) => {
+                    {["Astonishing",
+                        "Incredible",
+                        "Marvelous"].map((ingredient: any) => {
                             return (
                                 <Tag key={ingredient} color="orange" style={{ margin: ".2em" }}><p style={{ margin: ".2em .3em", fontSize: "1.1em" }}>{ingredient}</p></Tag>
                             )
