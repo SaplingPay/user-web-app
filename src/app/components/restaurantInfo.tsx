@@ -1,6 +1,6 @@
 import { Menu } from '@/models/models'
 import { getMenuAnon } from '@/utils/supabase/requests'
-import { CheckOutlined, DownCircleFilled, DownCircleOutlined, DownOutlined, FilterOutlined } from '@ant-design/icons'
+import { CheckOutlined, CloseOutlined, DownCircleFilled, DownCircleOutlined, DownOutlined, FilterOutlined } from '@ant-design/icons'
 import { Button, Drawer, FloatButton, Space } from 'antd'
 import React, { useEffect, useState } from 'react'
 
@@ -76,7 +76,7 @@ const RestaurantInfo = (props: Props) => {
             </div>
             <div style={{ marginLeft: "auto", marginRight: "0" }}>
                 <Button style={{ backgroundColor: "white", color: "black" }} onClick={() => setVisible(true)}>
-                    <FilterOutlined /> Preferences
+                    Personalize  ✨
                 </Button>
             </div>
 
@@ -99,8 +99,8 @@ const RestaurantInfo = (props: Props) => {
             // }
             >
                 <FloatButton
-                    icon={<CheckOutlined />}
-                    style={{ top: "2em", right: "1em", position: "absolute" }}
+                    icon={<CloseOutlined />}
+                    style={{ top: "1em", right: "1em", position: "absolute" }}
                     onClick={() => setVisible(false)} />
                 <FilterDrawer />
             </Drawer>

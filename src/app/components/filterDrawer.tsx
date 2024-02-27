@@ -19,61 +19,39 @@ const FilterDrawer = (props: Props) => {
     };
 
     return (
-        <div style={{ padding: "0 2vh 0 2vh ", marginBottom: "0", display: "flex", flexDirection: "column", height: "100%" }}>
+        <div style={{ padding: "0 4vh 0 4vh ", marginBottom: "0", display: "flex", flexDirection: "column", height: "100%" }}>
             <Title
-                level={1}
-                style={{ textAlign: "center", marginBottom: "0", }}>Preferences</Title>
-            <ConfigProvider
-                theme={{
-                    token: {
-                        colorPrimary: 'gray',
-                        borderRadius: 10,
-                        colorText: "gray"
-                    },
-                }}
-            >
-                <Title level={4} style={{ color: "green" }}>Plant-Based</Title>
-                <Space size={[0, 8]} wrap>
-                    {['Vegetarian', 'Vegan'].map((tag) => (
-                        <CheckableTag
-                            style={{ border: "1px solid gray", width: "9em", textAlign: "center", borderRadius: "1em" }}
-                            key={tag}
-                            checked={selectedTags.includes(tag)}
-                            onChange={(checked) => handleChange(tag, checked)}
-                        >
-                            <p style={{ fontSize: "1.25em", margin: ".5em" }}>{tag}</p>
-                        </CheckableTag>
-                    ))}
-                </Space>
+                level={2}
+                style={{ marginBottom: "0", marginTop: "2em" }}>Add your preferences to help us customize your menu ✨ </Title>
 
-                <Title level={4} style={{ color: "brown" }}>Lifecycle</Title>
-                <Space size={[0, 8]} wrap>
-                    {['Halal', 'Kosher', 'Pescetarian'].map((tag) => (
-                        <CheckableTag
-                            style={{ border: "1px solid gray", width: "9em", textAlign: "center", borderRadius: "1em" }}
-                            key={tag}
-                            checked={selectedTags.includes(tag)}
-                            onChange={(checked) => handleChange(tag, checked)}
-                        >
-                            <p style={{ fontSize: "1.25em", margin: ".5em" }}>{tag}</p>
-                        </CheckableTag>
-                    ))}
-                </Space>
+            <Title level={3} style={{ color: "black" }} >Dietary 🍴</Title>
+            <Space wrap>
+                {['Vegetarian', 'Vegan', 'Halal', 'Kosher', 'Pescetarian', 'Gluten-free'].map((tag) => (
+                    <CheckableTag
+                        style={{ border: "1px solid gray", textAlign: "center", borderRadius: "1em" }}
+                        key={tag}
+                        checked={selectedTags.includes(tag)}
+                        onChange={(checked) => handleChange(tag, checked)}
+                    >
+                        <p style={{ fontSize: "1.5em", margin: ".5em", }}>{tag}</p>
+                    </CheckableTag>
+                ))}
+            </Space>
 
-                <Title level={4} style={{ color: "red" }}>{"I'm Avoiding"}</Title>
-                <Space size={[0, 8]} wrap>
-                    {['Gluten', 'Dairy', 'Soy', 'Spicy', 'Nuts'].map((tag) => (
-                        <CheckableTag
-                            style={{ border: "1px solid gray", width: "9em", textAlign: "center", borderRadius: "1em" }}
-                            key={tag}
-                            checked={selectedTags.includes(tag)}
-                            onChange={(checked) => handleChange(tag, checked)}
-                        >
-                            <p style={{ fontSize: "1.25em", margin: ".5em" }}>{tag}</p>
-                        </CheckableTag>
-                    ))}
-                </Space>
-            </ConfigProvider>
+            <Title level={3} style={{ color: "black" }} >Allergies 🤧</Title>
+            <Space wrap>
+                {["Lactose", "Shellfish", "Eggs", "Soy", "Nuts", "Wheat"].map((tag) => (
+                    <CheckableTag
+                        style={{ border: "1px solid gray", textAlign: "center", borderRadius: "1em" }}
+                        key={tag}
+                        checked={selectedTags.includes(tag)}
+                        onChange={(checked) => handleChange(tag, checked)}
+                    >
+                        <p style={{ fontSize: "1.5em", margin: ".5em", }}>{tag}</p>
+                    </CheckableTag>
+                ))}
+            </Space>
+            <Button type="primary" style={{ margin: "2em 0", width: "100%", backgroundColor: "black", height: "4em" }}>Done</Button>
         </div>
     )
 }
