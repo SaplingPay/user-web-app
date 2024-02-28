@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Button, Card } from "antd";
 import { getMenusAnon } from "@/utils/supabase/requests";
 import axios from "axios";
+import Title from "antd/es/typography/Title";
 
 // const PROXY = "/api/proxy?url=" + process.env.PROXY_URL //const PROXY = "/api/proxy?url=http://localhost:8080"
 
@@ -60,7 +61,25 @@ export default function Home() {
     height: '35vw'
   };
 
-  return (
+
+
+  const useWidth = () => {
+    const [width, setWidth] = useState(0)
+    const handleResize = () => setWidth(window.innerWidth)
+    useEffect(() => {
+      handleResize()
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+    return width
+  }
+
+  const size = useWidth();
+
+
+
+  return (size <= 800 ?
     <main style={{ display: "flex", flexDirection: "column", overflow: "hidden", fontFamily: "sans-serif", padding: "0" }}>
 
       {/* <h1 style={{ fontSize: "2em", marginBottom: "3vh" }}>V2</h1> */}
@@ -100,5 +119,7 @@ export default function Home() {
       })} */}
 
     </main>
-  );
+    : <div style={{ textAlign: "center", padding: "5em" }}>
+      <Title level={2}>Please use a mobile device to view this page.</Title>
+    </div>);
 }

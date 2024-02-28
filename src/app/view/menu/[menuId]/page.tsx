@@ -2,6 +2,7 @@
 import HeaderV2 from '@/app/components/headerV2'
 import MenuCategoriesV2 from '@/app/components/menuCategoriesV2'
 import RestaurantInfoV2 from '@/app/components/restaurantInfoV2'
+import Title from 'antd/es/typography/Title'
 import axios from 'axios'
 import React, { use, useEffect, useState } from 'react'
 
@@ -39,13 +40,30 @@ const Page = (props: Props) => {
             });
     }
 
-    return (
+    const useWidth = () => {
+        const [width, setWidth] = useState(0)
+        const handleResize = () => setWidth(window.innerWidth)
+        useEffect(() => {
+            handleResize()
+            window.addEventListener('resize', handleResize)
+            return () => window.removeEventListener('resize', handleResize)
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [])
+        return width
+    }
+
+    const size = useWidth();
+
+    return (size <= 800 ?
         <main style={{ display: "flex", flexDirection: "column", overflow: "hidden" }}>
             <HeaderV2 menu={menu} />
             <RestaurantInfoV2 menu={menu} setDietaryFilter={setDietaryFilter} setAllergenFilter={setAllergenFilter} />
             <MenuCategoriesV2 menu={menu} dietaryFilter={dietaryFilter} allergenFilter={allergenFilter} />
 
-        </main >
+        </main > :
+        <div style={{ textAlign: "center", padding: "5em" }}>
+            <Title level={2}>Please use a mobile device to view this page.</Title>
+        </div>
     )
 }
 
