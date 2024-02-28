@@ -45,7 +45,7 @@ const RestaurantInfo = (props: Props) => {
     };
 
     return (
-        <div style={{ display: "flex", padding: "1.5vh 1vh 0 1vh", height: "3em", marginBottom: ".25em" }}>
+        <div style={{ display: "flex", padding: "1.5vh 1vh 0 1vh", height: "4em", marginBottom: ".25em" }}>
             <div>
                 <h2 style={{ marginBottom: "0", marginTop: "0" }}>{props.menu ? props.menu.name : ""}</h2>
                 {/* <div className="stars">⭐️⭐️⭐️⭐️⭐️</div> */}
