@@ -1,64 +1,52 @@
 'use client'
-import Header from "../../../components/header";
-import RestaurantInfo from "../../../components/restaurantInfo";
-import MenuCategories from "../../../components/menuCategories";
-import Footer from "../../../components/Footer";
-import Link from "next/link";
-import { createClient } from '@supabase/supabase-js'
+import HeaderV2 from '@/app/components/headerV2'
+import MenuCategoriesV2 from '@/app/components/menuCategoriesV2'
+import RestaurantInfoV2 from '@/app/components/restaurantInfoV2'
+import axios from 'axios'
+import React, { use, useEffect, useState } from 'react'
 
-import { useEffect, useState } from "react";
-import { useOrderStore } from "@/utils/provider/order-store-provider";
+type Props = {
+    params: any
+}
 
+// const PROXY = "/api/proxy?url=" + process.env.PROXY_URL //"/api/proxy?url=http://localhost:8080" //https://server-go.fly.dev
 
-type Props = { params: any }
+const Page = (props: Props) => {
+    const PROXY = "/api/proxy?url=" + "https://server-go.fly.dev"
+    const [menu, setMenu] = useState<any>()
+    const [menuItems, setMenuItems] = useState<any[]>([])
 
-const MenuPage = (props: Props) => {
-    const menuId = props.params.menuId
-
-    const getOrder = () => {
-        return window.localStorage.getItem('order') ? JSON.parse(window.localStorage.getItem('order') as any) : []
-    }
-
-    const updateOrder = (or: any[]) => {
-        window.localStorage.setItem('order', JSON.stringify(or))
-    }
-
-    const updateOrderQuantity = (orderId: string, newQuantity: number) => {
-        const order = getOrder();
-        const updatedOrder = order.map((item: any) => {
-            if (item.id === orderId) {
-                return { ...item, quantity: newQuantity };
-            }
-            return item;
-        });
-        updateOrder(updatedOrder);
-    };
+    const [dietaryFilter, setDietaryFilter] = useState<any[]>([])
+    const [allergenFilter, setAllergenFilter] = useState<any[]>([])
 
     useEffect(() => {
-        // const or = getOrder()
-        // const updatedOr = [...or, { id: "9970aaaf-ca93-455a-a435-c255b0067bed", quantity: 1 }]
-        // console.log("order", getOrder())
-        // updateOrder(updatedOr)
-        console.log("order", getOrder())
-
-        return () => {
-
-        }
+        getMenu(props.params.menuId)
     }, [])
 
-
-
-
+    const getMenu = async (menu_id: any) => {
+        await axios.get(PROXY + '/menus/' + menu_id)
+            .then((response) => {
+                console.log("Menus data:");
+                console.log(response.data?.data);
+                setMenu(response?.data?.data ? response.data.data : null)
+                setMenuItems(response?.data?.data ? response.data.data.items : [])
+            })
+            .catch((error: any) => {
+                console.log("Error fetching menu data:", error);
+                const status = error.response?.status;
+                const data = error.response?.data;
+                console.log(status, data)
+            });
+    }
 
     return (
         <main style={{ display: "flex", flexDirection: "column", overflow: "hidden" }}>
-            <Header menuId={menuId} />
-            <RestaurantInfo menuId={menuId} />
-            <MenuCategories menuId={menuId} />
-            {/* <Link href={`/view/menu/${menuId}/order`}><Footer>View order</Footer></Link> */}
+            <HeaderV2 menu={menu} />
+            <RestaurantInfoV2 menu={menu} setDietaryFilter={setDietaryFilter} setAllergenFilter={setAllergenFilter} />
+            <MenuCategoriesV2 menu={menu} dietaryFilter={dietaryFilter} allergenFilter={allergenFilter} />
 
         </main >
     )
 }
 
-export default MenuPage
+export default Page

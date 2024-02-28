@@ -63,12 +63,12 @@ export default function Home() {
   return (
     <main style={{ display: "flex", flexDirection: "column", overflow: "hidden", fontFamily: "sans-serif", padding: "0" }}>
 
-      <h1 style={{ fontSize: "2em", marginBottom: "3vh" }}>V2</h1>
+      {/* <h1 style={{ fontSize: "2em", marginBottom: "3vh" }}>V2</h1> */}
       <Card>
         {menusV2.map((item: any) => {
           return (
             <Card.Grid key={item.id} style={gridStyle} hoverable={false}>
-              <Link href={`/view/menuV2/${item.id}`} key={item.id} style={{ marginBottom: "2vh" }}>
+              <Link href={`/view/menu/${item.id}`} key={item.id} style={{ marginBottom: "2vh" }}>
                 <img
                   src={DB_STORAGE_URL + item.banner_url}
                   height={'100%'}
@@ -81,14 +81,14 @@ export default function Home() {
         })}
       </Card>
 
-      <h1 style={{ fontSize: "2em", marginBottom: "3vh" }}>V1</h1>
+      {/* <h1 style={{ fontSize: "2em", marginBottom: "3vh" }}>V1</h1>
       {menus.map((item) => {
         return (
-          <Link href={`/view/menu/${item.uuid}`} key={item.uuid} style={{ marginBottom: "2vh" }}>
+          <Link href={`/view/menuOld/${item.uuid}`} key={item.uuid} style={{ marginBottom: "2vh" }}>
             <Button type="primary" style={{ width: "100%", height: "8vh", fontSize: "1.25em" }}>{item.title}</Button>
           </Link>
         )
-      })}
+      })} */}
 
 
       {/* {menusV2.map((item) => {
