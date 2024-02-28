@@ -35,6 +35,7 @@ const DishGallery = (props: Props) => {
             } else {
                 // console.log("Items found for filter", props.filter)
                 let items = menuItems
+                items = items.filter((i: any) => !i.archived)
                 if (props.allergenFilter.length > 0) {
                     items = items.filter((i: any) => {
                         // Check if none of the allergens in props.allergenFilter are included in i.allergens
