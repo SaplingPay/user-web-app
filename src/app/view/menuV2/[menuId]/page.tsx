@@ -11,7 +11,7 @@ type Props = {
 
 const PROXY = "/api/proxy?url=http://localhost:8080" //https://server-go.fly.dev
 
-const page = (props: Props) => {
+const Page = (props: Props) => {
     const [menu, setMenu] = useState<any>()
     const [menuItems, setMenuItems] = useState<any[]>([])
 
@@ -48,4 +48,4 @@ const page = (props: Props) => {
     )
 }
 
-export default page
+export default Page
