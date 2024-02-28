@@ -49,7 +49,7 @@ const RestaurantInfo = (props: Props) => {
             <div>
                 <h1 style={{ marginBottom: "0", marginTop: "0" }}>{props.menu ? props.menu.name : ""}</h1>
                 {/* <div className="stars">⭐️⭐️⭐️⭐️⭐️</div> */}
-                <div style={{ marginLeft: "auto", marginBottom: "auto", marginTop: "0.5em", textAlign: "right", paddingRight: "2vh", display: "flex" }}>
+                <div style={{ marginLeft: "auto", marginBottom: "auto", marginTop: "0", textAlign: "right", paddingRight: "2vh", display: "flex" }}>
                     {/* <DownCircleOutlined /> */}
                     <div className="location" style={{ marginLeft: "1vw" }}>📍{props.menu ? props.menu.location : ""}</div>
                 </div>
