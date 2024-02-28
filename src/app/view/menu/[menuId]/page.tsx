@@ -51,7 +51,7 @@ const MenuPage = (props: Props) => {
 
 
     return (
-        <main style={{ display: "flex", flexDirection: "column", overflow: "hidden", fontFamily: "sans-serif" }}>
+        <main style={{ display: "flex", flexDirection: "column", overflow: "hidden" }}>
             <Header menuId={menuId} />
             <RestaurantInfo menuId={menuId} />
             <MenuCategories menuId={menuId} />

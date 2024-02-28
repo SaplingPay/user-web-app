@@ -11,16 +11,16 @@ type Props = {
 const DB_STORAGE_URL = "https://pcymmfzjvqqszeimvekz.supabase.co/storage/v1/object/public/menu-assets/"
 
 const ItemDrawer = (props: Props) => {
+    // console.log("ItemDrawer props", props)
 
 
     if (props.item) {
         return (
             <div style={{ paddingBottom: "2em" }}>
                 <div>
-                    <Image
+                    <img
                         style={{ maxHeight: "60vh", width: "100%", objectFit: "cover" }}
                         src={DB_STORAGE_URL + props.item.image_url}
-                        preview={false}
                         width="100%"
                     />
                 </div>
@@ -28,39 +28,45 @@ const ItemDrawer = (props: Props) => {
                     <div style={{ display: "flex" }}>
                         <h1 style={{ margin: "0" }}>{props.item.name}</h1>
                         <div style={{ marginLeft: "auto", marginTop: "0", paddingTop: "0" }}>
-                            <h3 style={{ margin: "1vh 0 0 0", color: "orange" }}>€{parseInt(props.item.price) / 100}</h3>
+                            <h3 style={{ margin: "1vh 0 0 0", color: "orange" }}>€{props.item.price}</h3>
                         </div>
                     </div>
                     <p style={{ color: "gray" }}>{props.item.description}</p>
 
+                    <h4 style={{ marginBottom: ".5em" }}>Dietary / Allergens</h4>
                     <div>
-                        {[{ name: "Vegan", color: "green" }, { name: "Vegaterian", color: "green" }, { name: "Warm", color: "volcano" }].map((tag: any) => {
+                        {props.item.dietary_restrictions?.map((tag: any) => {
                             return (
-                                <Tag key={`${tag.name}-${tag.color}`} color={tag.color} style={{ margin: ".2em" }}><p style={{ margin: ".2em .3em", fontSize: "1.1em" }}>{tag.name}</p></Tag>
+                                <Tag key={`${tag}`} color="green" style={{ margin: ".2em" }}><p style={{ margin: ".2em .3em", fontSize: "1.1em" }}>{tag}</p></Tag>
                             )
 
                         })}
+                        {props.item.allergens?.map((tag: any) => {
+                            return (
+                                <Tag key={`${tag}`} color="volcano" style={{ margin: ".2em" }}><p style={{ margin: ".2em .3em", fontSize: "1.1em" }}>{tag}</p></Tag>
+                            )
+
+                        })}
+
                     </div>
 
                     <h4 style={{ marginBottom: ".5em" }}>Customizations</h4>
                     <div>
-                        {[{ name: "Small" }, { name: "Medium" }, { name: "Large" }].map((customization: any) => {
+                        {props.item.customizations?.map((customization: any) => {
                             return (
-                                <Tag key={customization.name} color="blue" style={{ margin: ".2em" }}><p style={{ margin: ".2em .3em", fontSize: "1.1em" }}>{customization.name}</p></Tag>
+                                <Tag key={customization} color="blue" style={{ margin: ".2em" }}><p style={{ margin: ".2em .3em", fontSize: "1.1em" }}>{customization}</p></Tag>
                             )
                         })}
                     </div>
 
-                    {/* <h4 style={{ marginBottom: ".5em" }}>Dietary Restrictions / Allergens</h4> */}
+
 
                     <h4 style={{ marginBottom: ".5em" }}>Ingredients</h4>
-                    {["Astonishing",
-                        "Incredible",
-                        "Marvelous"].map((ingredient: any) => {
-                            return (
-                                <Tag key={ingredient} color="orange" style={{ margin: ".2em" }}><p style={{ margin: ".2em .3em", fontSize: "1.1em" }}>{ingredient}</p></Tag>
-                            )
-                        })}
+                    {props.item.ingredients?.map((ingredient: any) => {
+                        return (
+                            <Tag key={ingredient} color="orange" style={{ margin: ".2em" }}><p style={{ margin: ".2em .3em", fontSize: "1.1em" }}>{ingredient}</p></Tag>
+                        )
+                    })}
                 </div>
 
             </div>

@@ -6,6 +6,8 @@ import "./globals.css";
 import { ConfigProvider } from "antd";
 import { OrderStoreProvider } from "@/utils/provider/order-store-provider";
 
+import { Epilogue } from 'next/font/google'
+
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -14,6 +16,10 @@ export const metadata: Metadata = {
   description: "The Sustainabile Social Payments Platform",
 };
 
+const epilogue = Epilogue({
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export default function RootLayout({
   children,
@@ -22,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <OrderStoreProvider>
-      <html lang="en">
+      <html lang="en" className={epilogue.className}>
         <body>
 
           <AntdRegistry>
