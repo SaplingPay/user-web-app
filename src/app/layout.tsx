@@ -13,7 +13,7 @@ import { Epilogue } from 'next/font/google'
 
 export const metadata: Metadata = {
   title: "Sapling",
-  description: "The Sustainabile Social Payments Platform",
+  description: "Elevating the Dining Experince",
 };
 
 const epilogue = Epilogue({
