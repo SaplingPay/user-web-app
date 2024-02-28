@@ -32,7 +32,7 @@ export default function Home() {
         console.log(response.data?.data);
         // setMenu(response?.data?.data ? response.data.data[0] : null)
         // setMenuItems(response?.data?.data ? response.data.data[0].items : [])
-        setMenusV2(response?.data?.data)
+        setMenusV2(response?.data?.data.filter((item: any) => !item.archived))
       })
       .catch((error: any) => {
         console.log("Error fetching user data:");
