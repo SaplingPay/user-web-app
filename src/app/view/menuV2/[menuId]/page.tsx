@@ -9,9 +9,10 @@ type Props = {
     params: any
 }
 
-const PROXY = "/api/proxy?url=http://localhost:8080" //https://server-go.fly.dev
+// const PROXY = "/api/proxy?url=" + process.env.PROXY_URL //"/api/proxy?url=http://localhost:8080" //https://server-go.fly.dev
 
 const Page = (props: Props) => {
+    const PROXY = "/api/proxy?url=" + "https://server-go.fly.dev"
     const [menu, setMenu] = useState<any>()
     const [menuItems, setMenuItems] = useState<any[]>([])
 

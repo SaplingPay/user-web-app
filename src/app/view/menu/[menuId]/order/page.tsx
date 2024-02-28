@@ -16,9 +16,10 @@ const DEFAULT_URL = "https://pcymmfzjvqqszeimvekz.supabase.co/storage/v1/object/
 const examples: MenuItem[] = [
     { id: "1", created_at: "now", name: "test", description: "test", price: 10, image_url: "", uuid: "1" }
 ]
-const PROXY = "/api/proxy?url=https://server-go.fly.dev"
+// const PROXY = "/api/proxy?url=" + process.env.PROXY_URL //const PROXY = "/api/proxy?url=https://server-go.fly.dev"
 
 const OrderItem = (item: MenuItem) => {
+    const PROXY = "/api/proxy?url=" + "https://server-go.fly.dev"
     return (
         <div key={item.uuid}>
             <div style={{ display: "flex" }}>

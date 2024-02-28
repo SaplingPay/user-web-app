@@ -6,11 +6,13 @@ import { Button, Card } from "antd";
 import { getMenusAnon } from "@/utils/supabase/requests";
 import axios from "axios";
 
-const PROXY = "/api/proxy?url=http://localhost:8080"
+// const PROXY = "/api/proxy?url=" + process.env.PROXY_URL //const PROXY = "/api/proxy?url=http://localhost:8080"
 
 const DB_STORAGE_URL = "https://pcymmfzjvqqszeimvekz.supabase.co/storage/v1/object/public/menu-assets/"
 
 export default function Home() {
+  const PROXY = "/api/proxy?url=" + "https://server-go.fly.dev"
+  console.log("PROXY", PROXY)
   const [menus, setMenus] = useState<any[]>([])
   const [menusV2, setMenusV2] = useState<any[]>([])
 
