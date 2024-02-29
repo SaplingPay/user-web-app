@@ -41,16 +41,6 @@ export default function Home() {
         // setCreateAccountModalVisible(true);
       });
   }
-  const loadMenus = async () => {
-    const menus = getMenusAnon()
-    menus
-      .then(res => {
-        if (res instanceof Array) {
-          setMenus(res)
-        }
-        console.log(res)
-      })
-  }
 
   const gridStyle: React.CSSProperties = {
     textAlign: 'center',
