@@ -18,9 +18,6 @@ export default function Home() {
   const [menusV2, setMenusV2] = useState<any[]>([])
 
   useEffect(() => {
-    // V1
-    loadMenus()
-
     // V2
     getAllMenus()
 
