@@ -48,8 +48,6 @@ export default function Home() {
     height: '35vw'
   };
 
-
-
   const useWidth = () => {
     const [width, setWidth] = useState(0)
     const handleResize = () => setWidth(window.innerWidth)
