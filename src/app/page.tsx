@@ -12,7 +12,7 @@ import Title from "antd/es/typography/Title";
 const DB_STORAGE_URL = "https://pcymmfzjvqqszeimvekz.supabase.co/storage/v1/object/public/menu-assets/"
 
 export default function Home() {
-  const PROXY = "/api/proxy?url=" + "https://server-go.fly.dev"
+  const PROXY = "/api/proxy?url=" + process.env.PROXY_URL
   console.log("PROXY", PROXY)
   const [menus, setMenus] = useState<any[]>([])
   const [menusV2, setMenusV2] = useState<any[]>([])

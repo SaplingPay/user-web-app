@@ -19,7 +19,7 @@ const examples: MenuItem[] = [
 // const PROXY = "/api/proxy?url=" + process.env.PROXY_URL //const PROXY = "/api/proxy?url=https://server-go.fly.dev"
 
 const OrderItem = (item: MenuItem) => {
-    const PROXY = "/api/proxy?url=" + "https://server-go.fly.dev"
+    const PROXY = "/api/proxy?url=" + process.env.PROXY_URL
     return (
         <div key={item.uuid}>
             <div style={{ display: "flex" }}>
