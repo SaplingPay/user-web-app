@@ -15,7 +15,6 @@ export default function Home() {
     const PROXY = "/api/proxy?url=" + "https://server-go.fly.dev"
     console.log("PROXY", PROXY)
     const [menus, setMenus] = useState<any[]>([])
-    const [menusV2, setMenusV2] = useState<any[]>([])
 
     useEffect(() => {
         // V2
@@ -26,11 +25,7 @@ export default function Home() {
     const getAllMenus = async () => {
         await axios.get(PROXY + '/menus/')
             .then((response) => {
-                console.log("Menus data:");
-                console.log(response.data?.data);
-                // setMenu(response?.data?.data ? response.data.data[0] : null)
-                // setMenuItems(response?.data?.data ? response.data.data[0].items : [])
-                setMenusV2(response?.data?.data.filter((item: any) => !item.archived))
+                setMenus(response?.data?.data.filter((item: any) => !item.archived))
             })
             .catch((error: any) => {
                 console.log("Error fetching user data:");
@@ -38,7 +33,6 @@ export default function Home() {
                 const status = error.response?.status;
                 const data = error.response?.data;
                 console.log(status, data)
-                // setCreateAccountModalVisible(true);
             });
     }
 
@@ -55,7 +49,6 @@ export default function Home() {
             handleResize()
             window.addEventListener('resize', handleResize)
             return () => window.removeEventListener('resize', handleResize)
-            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [])
         return width
     }
@@ -67,9 +60,8 @@ export default function Home() {
     return (size <= 800 ?
         <main style={{ display: "flex", flexDirection: "column", overflow: "hidden", fontFamily: "sans-serif", padding: "0" }}>
 
-            {/* <h1 style={{ fontSize: "2em", marginBottom: "3vh" }}>V2</h1> */}
             <Card>
-                {menusV2.map((item: any) => {
+                {menus.map((item: any) => {
                     return (
                         <Card.Grid key={item.id} style={gridStyle} hoverable={false}>
                             <Link href={`/view/menu/${item.id}`} key={item.id} style={{ marginBottom: "2vh" }}>
@@ -84,24 +76,6 @@ export default function Home() {
                     )
                 })}
             </Card>
-
-            {/* <h1 style={{ fontSize: "2em", marginBottom: "3vh" }}>V1</h1>
-      {menus.map((item) => {
-        return (
-          <Link href={`/view/menuOld/${item.uuid}`} key={item.uuid} style={{ marginBottom: "2vh" }}>
-            <Button type="primary" style={{ width: "100%", height: "8vh", fontSize: "1.25em" }}>{item.title}</Button>
-          </Link>
-        )
-      })} */}
-
-
-            {/* {menusV2.map((item) => {
-        return (
-          <Link href={`/view/menuV2/${item.id}`} key={item.id} style={{ marginBottom: "2vh" }}>
-            <Button type="primary" style={{ width: "100%", height: "8vh", fontSize: "1.25em" }}>{item.name}</Button>
-          </Link>
-        )
-      })} */}
 
         </main>
         : <div style={{ textAlign: "center", padding: "5em" }}>
