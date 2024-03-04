@@ -5,7 +5,9 @@ import DishGallery from './dishGallery';
 import { getMenuCategoriesAnon, getMenuItemsAnon } from '@/utils/supabase/requests';
 
 type Props = {
-    menuId: any
+    menu: any
+    dietaryFilter: any
+    allergenFilter: any
 }
 
 function TabLabel({
@@ -19,7 +21,8 @@ function TabLabel({
 }
 
 const MenuCategories = (props: Props) => {
-    const menuId = props.menuId
+    // console.log("MenuCategories props:", props)
+    // const menuId = props.menuId
     const [menuItems, setMenuItems] = useState<any[]>([])
     const [categories, setCategories] = useState<any>([])
 
@@ -31,33 +34,29 @@ const MenuCategories = (props: Props) => {
         return array.indexOf(value) === index;
     }
 
-
-    console.log(categories)
     useEffect(() => {
-        const loadMenuItems = async () => {
-            const menuItems = getMenuItemsAnon({ menuId })
-            menuItems
-                .then(res => {
-                    if (res instanceof Array) {
-                        setMenuItems(res)
-                        if (categories.length === 0) {
-                            const cats = res.filter((iCat: any) => iCat?.categories).map(i => i.categories)
-                            console.log('cats', cats)
-                            setCategories((prev: any[]) => [...prev, ...cats].filter(onlyUnique))
+        // Filter items based on dietry and allergen filters here
+        console.log("MenuCategories props:", props)
 
-                        }
+        if (props.menu?.items) {
+            let items = props.menu?.items
 
+            if (categories.length === 0) {
+                const cats = items.map((i: any) => i.categories?.[0]).filter((i: any) => i !== null && i !== undefined)
+                console.log(cats)
+                setCategories((prev: any[]) => [...prev, ...cats].filter(onlyUnique))
+            }
 
+            setMenuItems(items)
 
-                    }
-                })
         }
-        loadMenuItems()
+
     }, [props])
 
     return (
         <div className="menu-categories">
             <Tabs
+                destroyInactiveTabPane
                 defaultActiveKey="0"
                 onChange={onChange}
                 items={[
@@ -65,7 +64,7 @@ const MenuCategories = (props: Props) => {
                         return {
                             key: "0",
                             label: <TabLabel>Overview</TabLabel>,
-                            children: <DishGallery filter={"overview"} menuItems={menuItems} menuId={menuId} />,
+                            children: <DishGallery filter={"overview"} menuItems={menuItems} menu={props.menu} allergenFilter={props.allergenFilter} dietaryFilter={props.dietaryFilter} />,
                         }
                     }),
                     ...[...categories].map((cat, i) => {
@@ -73,7 +72,7 @@ const MenuCategories = (props: Props) => {
                         return {
                             key: id,
                             label: <TabLabel>{cat}</TabLabel>,
-                            children: <DishGallery filter={cat} menuItems={menuItems} menuId={menuId} />,
+                            children: <DishGallery filter={cat} menuItems={menuItems} menu={props.menu} allergenFilter={props.allergenFilter} dietaryFilter={props.dietaryFilter} />,
                         }
                     }),
 

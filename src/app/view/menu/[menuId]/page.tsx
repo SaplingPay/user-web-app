@@ -1,7 +1,7 @@
 'use client'
-import HeaderV2 from '@/app/components/headerV2'
-import MenuCategoriesV2 from '@/app/components/menuCategoriesV2'
-import RestaurantInfoV2 from '@/app/components/restaurantInfoV2'
+import Header from '@/app/components/header'
+import MenuCategories from '@/app/components/menuCategories'
+import RestaurantInfo from '@/app/components/restaurantInfo'
 import Title from 'antd/es/typography/Title'
 import axios from 'axios'
 import React, { use, useEffect, useState } from 'react'
@@ -10,10 +10,8 @@ type Props = {
     params: any
 }
 
-// const PROXY = "/api/proxy?url=" + process.env.PROXY_URL //"/api/proxy?url=http://localhost:8080" //https://server-go.fly.dev
-
 const Page = (props: Props) => {
-    const PROXY = "/api/proxy?url=" + "https://server-go.fly.dev"
+    const PROXY = "/api/proxy?request="
     const [menu, setMenu] = useState<any>()
     const [menuItems, setMenuItems] = useState<any[]>([])
 
@@ -56,9 +54,9 @@ const Page = (props: Props) => {
 
     return (size <= 800 ?
         <main style={{ display: "flex", flexDirection: "column", overflow: "hidden" }}>
-            <HeaderV2 menu={menu} />
-            <RestaurantInfoV2 menu={menu} setDietaryFilter={setDietaryFilter} setAllergenFilter={setAllergenFilter} />
-            <MenuCategoriesV2 menu={menu} dietaryFilter={dietaryFilter} allergenFilter={allergenFilter} />
+            <Header menu={menu} />
+            <RestaurantInfo menu={menu} setDietaryFilter={setDietaryFilter} setAllergenFilter={setAllergenFilter} />
+            <MenuCategories menu={menu} dietaryFilter={dietaryFilter} allergenFilter={allergenFilter} />
 
         </main > :
         <div style={{ textAlign: "center", padding: "5em" }}>

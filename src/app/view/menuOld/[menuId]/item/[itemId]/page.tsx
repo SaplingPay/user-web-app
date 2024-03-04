@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react'
 type Props = {
     params: any
 }
-const DB_STORAGE_URL = "https://pcymmfzjvqqszeimvekz.supabase.co/storage/v1/object/public/menu-assets/"
+const DB_STORAGE_URL = process.env.DB_STORAGE_URL
 
 export default function ItemPage(props: Props) {
     const menuId = props.params.menuId

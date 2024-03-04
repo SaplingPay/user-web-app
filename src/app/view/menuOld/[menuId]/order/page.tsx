@@ -12,20 +12,22 @@ type Props = {
     params: any
 }
 
-const DEFAULT_URL = "https://pcymmfzjvqqszeimvekz.supabase.co/storage/v1/object/public/menu-assets/"
+
 const examples: MenuItem[] = [
     { id: "1", created_at: "now", name: "test", description: "test", price: 10, image_url: "", uuid: "1" }
 ]
-// const PROXY = "/api/proxy?url=" + process.env.PROXY_URL //const PROXY = "/api/proxy?url=https://server-go.fly.dev"
 
+const DB_STORAGE_URL = process.env.DB_STORAGE_URL ? process.env.DB_STORAGE_URL : ""
 const OrderItem = (item: MenuItem) => {
-    const PROXY = "/api/proxy?url=" + "https://server-go.fly.dev"
+    const PROXY = "/api/proxy?request="
+
+
     return (
         <div key={item.uuid}>
             <div style={{ display: "flex" }}>
                 <Link href="/items/1">
                     <Image
-                        src={DEFAULT_URL + item.image_url}
+                        src={DB_STORAGE_URL + item.image_url}
                         preview={false}
                         style={{ height: "25vw", width: "25vw" }}
                     />
@@ -162,7 +164,7 @@ const OrderPage = (props: Props) => {
                             <div style={{ display: "flex" }}>
                                 <Link href={`/view/menu/${menuId}/item/${item[0].uuid}`}>
                                     <Image
-                                        src={DEFAULT_URL + item[0].image_url}
+                                        src={DB_STORAGE_URL + item[0].image_url}
                                         preview={false}
                                         style={{ height: "25vw", width: "25vw" }}
                                     />
