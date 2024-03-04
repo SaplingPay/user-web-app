@@ -4,7 +4,6 @@ import { NextResponse, NextRequest } from 'next/server';
 import axios from 'axios';
 
 const serverUrl = process.env.SERVER_URL ? process.env.SERVER_URL : ''
-const serverAuthUrl = process.env.SERVER_AUTH_URL ? process.env.SERVER_AUTH_URL : ''
 
 export async function GET(request: NextRequest) {
   console.log("working GET")
@@ -16,7 +15,7 @@ export async function GET(request: NextRequest) {
     }
 
     const req = serverUrl + reqPath;
-    const token = await (await axios.post(serverAuthUrl + '/getToken', {})).data.token;
+    const token = await (await axios.post(serverUrl + '/getToken', {})).data.token;
 
     const response = 
       await axios.get(req, {
@@ -45,7 +44,7 @@ export async function POST(request: NextRequest) {
     }
 
     const req = serverUrl + reqPath;
-    const token = await (await axios.post(serverAuthUrl + '/getToken', {})).data.token;
+    const token = await (await axios.post(serverUrl + '/getToken', {})).data.token;
 
     const data = await request.json();
     console.log(req, data)
@@ -75,7 +74,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const req = serverUrl + reqPath;
-    const token = await (await axios.post(serverAuthUrl + '/getToken', {})).data.token;
+    const token = await (await axios.post(serverUrl + '/getToken', {})).data.token;
 
     const data = await request.json();
     console.log(req, data)
@@ -106,7 +105,7 @@ export async function DELETE(request: NextRequest) {
     }
 
     const req = serverUrl + reqPath;
-    const token = await (await axios.post(serverAuthUrl + '/getToken', {})).data.token;
+    const token = await (await axios.post(serverUrl + '/getToken', {})).data.token;
 
     const data = await request.json();
     console.log(req, data)
