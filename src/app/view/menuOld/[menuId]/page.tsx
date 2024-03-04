@@ -52,9 +52,9 @@ const MenuPage = (props: Props) => {
 
     return (
         <main style={{ display: "flex", flexDirection: "column", overflow: "hidden" }}>
-            <Header menuId={menuId} />
+            {/* <Header menuId={menuId} />
             <RestaurantInfo menuId={menuId} />
-            <MenuCategories menuId={menuId} />
+            <MenuCategories menuId={menuId} /> */}
             {/* <Link href={`/view/menu/${menuId}/order`}><Footer>View order</Footer></Link> */}
 
         </main >

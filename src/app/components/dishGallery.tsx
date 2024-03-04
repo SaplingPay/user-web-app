@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import { Button, Card, Drawer, FloatButton, Image } from "antd";
 import Link from 'next/link';
 import ItemDrawer from './itemDrawer';
@@ -12,19 +12,46 @@ const gridStyle: React.CSSProperties = {
     padding: 0,
     height: '35vw'
 };
-const DB_STORAGE_URL = "https://pcymmfzjvqqszeimvekz.supabase.co/storage/v1/object/public/menu-assets/"
+const DB_STORAGE_URL = process.env.DB_STORAGE_URL
 
 
 type Props = {
+    menu: any,
     menuItems: any[],
-    menuId: any,
-    filter: any
+    filter: any,
+    allergenFilter: any[]
+    dietaryFilter: any[]
 }
 
 const DishGallery = (props: Props) => {
-    const menuItems = props.filter === "overview" ? props.menuItems : props.menuItems.filter(i => i.categories == props.filter)
-    const menuId = props.menuId
     const [currentItem, setCurrentItem] = React.useState<any>(null)
+    const [filteredItems, setFilteredItems] = React.useState<any[]>([])
+
+    useEffect(() => {
+        if (props.menuItems) {
+            const menuItems = props.filter === "overview" ? props.menuItems : props.menuItems.filter(i => i.categories == props.filter)
+            if (menuItems.length === 0) {
+                console.log("No items found for filter", props.filter)
+            } else {
+                // console.log("Items found for filter", props.filter)
+                let items = menuItems
+                items = items.filter((i: any) => !i.archived)
+                if (props.allergenFilter.length > 0) {
+                    items = items.filter((i: any) => {
+                        // Check if none of the allergens in props.allergenFilter are included in i.allergens
+                        return props.allergenFilter.every((allergen: any) => !i?.allergens?.includes(allergen));
+                    });
+                }
+
+                if (props.dietaryFilter.length > 0) {
+                    items = items.filter((i: any) => {
+                        return props.dietaryFilter.every((dr: any) => i?.dietary_restrictions?.includes(dr));
+                    });
+                }
+                setFilteredItems(items)
+            }
+        }
+    }, [props])
 
     const [visible, setVisible] = useState(false)
 
@@ -64,17 +91,17 @@ const DishGallery = (props: Props) => {
     return (
         <div>
             <Card>
-                {menuItems.map((item: any) => {
+                {filteredItems.map((item: any) => {
                     return (
-                        <Card.Grid key={item.uuid} style={gridStyle} hoverable={false}>
+                        <Card.Grid key={item.id} style={gridStyle} hoverable={false}>
                             {/* <Link href={`/view/menu/${menuId}/item/${item.uuid}`}>
                                 
                             </Link> */}
-                            <Image
+                            <img
                                 src={DB_STORAGE_URL + item.image_url}
                                 height={'100%'}
                                 width={'100%'}
-                                preview={false}
+                                style={{ objectFit: "cover" }}
                                 onClick={() => openDrawer(item)}
                             />
                         </Card.Grid>

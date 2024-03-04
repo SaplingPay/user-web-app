@@ -8,7 +8,7 @@ type Props = {
     setVisible: any
 }
 
-const DB_STORAGE_URL = "https://pcymmfzjvqqszeimvekz.supabase.co/storage/v1/object/public/menu-assets/"
+const DB_STORAGE_URL = process.env.DB_STORAGE_URL
 
 const ItemDrawer = (props: Props) => {
     // console.log("ItemDrawer props", props)
