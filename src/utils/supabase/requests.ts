@@ -71,7 +71,7 @@ export const getFile = async({token, path} : any) => {
     const supabase = await supabaseClient(token);
 
     const { data } = supabase
-        .storage.from('menu-assets')
+        .storage.from(process.env.NEXT_PUBLIC_SUPABASE_BUCKET as string)
         .getPublicUrl(path)
 
     return data
@@ -84,7 +84,7 @@ export const uploadFile = async({userId, token, fileName, file} : any) => {
 
     const { data, error } = await supabase
         .storage
-        .from('menu-assets')
+        .from(process.env.NEXT_PUBLIC_SUPABASE_BUCKET as string)
         .upload(`${userId}/${uuidv4()}`, file.originFileObj, {
             contentType:file.type
         })
