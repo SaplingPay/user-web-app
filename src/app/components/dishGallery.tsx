@@ -6,6 +6,7 @@ import type { DrawerClassNames, DrawerStyles } from 'antd/es/drawer/DrawerPanel'
 import { createStyles, useTheme } from 'antd-style';
 import FilterDrawer from './filterDrawer'
 import { DownOutlined } from '@ant-design/icons';
+import { BlurhashImage } from './blurhashImage';
 
 const gridStyle: React.CSSProperties = {
     textAlign: 'center',
@@ -97,11 +98,12 @@ const DishGallery = (props: Props) => {
                             {/* <Link href={`/view/menu/${menuId}/item/${item.uuid}`}>
                                 
                             </Link> */}
-                            <img
+                            <BlurhashImage
                                 src={DB_STORAGE_URL + item.image_url}
                                 height={'100%'}
                                 width={'100%'}
                                 style={{ objectFit: "cover" }}
+                                blurhash={item.blurhash}
                                 onClick={() => openDrawer(item)}
                             />
                         </Card.Grid>
