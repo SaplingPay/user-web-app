@@ -30,7 +30,7 @@ export const BlurhashImage = (props: BlurhashImageProps) => {
             }}
             onClick={props.onClick}
         >
-            {loading && props.blurhash.hash && (
+            {loading && props?.blurhash?.hash && (
                 <Blurhash
                     hash={props.blurhash.hash}
                     width={props.blurhash.width}
