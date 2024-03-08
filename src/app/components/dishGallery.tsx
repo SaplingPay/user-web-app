@@ -29,7 +29,6 @@ const DishGallery = (props: Props) => {
     const [filteredItems, setFilteredItems] = React.useState<any[]>([])
 
     useEffect(() => {
-        console.log("DishGallery props:", props)
         if (props.menuItems) {
             const menuItems = props.filter === "overview" ? props.menuItems.filter(i => i.on_overview) : props.menuItems.filter(i => i.categories == props.filter)
             if (menuItems.length === 0) {
