@@ -30,7 +30,7 @@ const DishGallery = (props: Props) => {
 
     useEffect(() => {
         if (props.menuItems) {
-            const menuItems = props.filter === "overview" ? props.menuItems : props.menuItems.filter(i => i.categories == props.filter)
+            const menuItems = props.filter === "overview" ? props.menuItems.filter(i => i.on_overview) : props.menuItems.filter(i => i.categories == props.filter)
             if (menuItems.length === 0) {
                 console.log("No items found for filter", props.filter)
             } else {
