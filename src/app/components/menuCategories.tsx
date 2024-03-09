@@ -41,7 +41,9 @@ const MenuCategories = (props: Props) => {
         if (props.menu?.items) {
             let items = props.menu?.items
 
-            if (categories.length === 0) {
+            if (props.menu?.category_order) {
+                setCategories(props.menu?.category_order)
+            } else if (categories.length === 0) {
                 const cats = items.map((i: any) => i.categories?.[0]).filter((i: any) => i !== null && i !== undefined)
                 console.log(cats)
                 setCategories((prev: any[]) => [...prev, ...cats].filter(onlyUnique))
