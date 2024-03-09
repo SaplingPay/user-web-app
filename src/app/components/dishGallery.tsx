@@ -91,7 +91,7 @@ const DishGallery = (props: Props) => {
     }
     return (
         <div>
-            <Card>
+            <Card style={{ marginRight: "-1px", }}>
                 {filteredItems.map((item: any) => {
                     return (
                         <Card.Grid key={item.id} style={gridStyle} hoverable={false}>
