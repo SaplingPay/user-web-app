@@ -33,7 +33,7 @@ const ItemDrawer = (props: Props) => {
                     </div>
                     <p style={{ color: "gray" }}>{props.item.description}</p>
 
-                    <h4 style={{ marginBottom: ".5em" }}>Dietary / Allergens</h4>
+                    {props.item.dietary_restrictions?.length > 0 && <h4 style={{ marginBottom: ".5em" }}>Dietary / Allergens</h4>}
                     <div>
                         {props.item.dietary_restrictions?.map((tag: any) => {
                             return (
@@ -50,7 +50,7 @@ const ItemDrawer = (props: Props) => {
 
                     </div>
 
-                    <h4 style={{ marginBottom: ".5em" }}>Customizations</h4>
+                    {props.item.customizations?.length > 0 && <h4 style={{ marginBottom: ".5em" }}>Customizations</h4>}
                     <div>
                         {props.item.customizations?.map((customization: any) => {
                             return (
@@ -60,8 +60,7 @@ const ItemDrawer = (props: Props) => {
                     </div>
 
 
-
-                    <h4 style={{ marginBottom: ".5em" }}>Ingredients</h4>
+                    {props.item.ingredients?.length > 0 && <h4 style={{ marginBottom: ".5em" }}>Ingredients</h4>}
                     {props.item.ingredients?.map((ingredient: any) => {
                         return (
                             <Tag key={ingredient} color="orange" style={{ margin: ".2em" }}><p style={{ margin: ".2em .3em", fontSize: "1.1em" }}>{ingredient}</p></Tag>
