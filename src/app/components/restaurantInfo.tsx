@@ -56,7 +56,7 @@ const RestaurantInfo = (props: Props) => {
             </div>
             <div style={{ marginLeft: "auto", marginRight: "0" }}>
                 <Button style={{ backgroundColor: "white", color: "black" }} onClick={() => setVisible(true)}>
-                    Personalize  ✨
+                    Filter  ✨
                 </Button>
             </div>
 

@@ -90,7 +90,7 @@ const FilterDrawer = (props: Props) => {
                 type="primary"
                 style={{ margin: "1.5em 0", width: "100%", backgroundColor: "black", height: "5.5vh" }}
                 onClick={() => props.setVisible(false)}
-            >Done</Button>
+            >Filter</Button>
         </div>
     )
 }
