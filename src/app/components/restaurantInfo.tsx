@@ -51,12 +51,12 @@ const RestaurantInfo = (props: Props) => {
                 {/* <div className="stars">⭐️⭐️⭐️⭐️⭐️</div> */}
                 <div style={{ marginLeft: "auto", marginBottom: "auto", marginTop: "0", textAlign: "right", paddingRight: "2vh", display: "flex" }}>
                     {/* <DownCircleOutlined /> */}
-                    <div className="location" style={{ marginLeft: "1vw", fontSize: "1em" }}>📍{props.menu ? props.menu.location : ""}</div>
+                    <div className="location" style={{ marginLeft: "1vw", fontSize: ".8em" }}>📍{props.menu ? props.menu.location : ""}</div>
                 </div>
             </div>
             <div style={{ marginLeft: "auto", marginRight: "0" }}>
                 <Button style={{ backgroundColor: "white", color: "black" }} onClick={() => setVisible(true)}>
-                    Filter  ✨
+                    Filters  ✨
                 </Button>
             </div>
 
