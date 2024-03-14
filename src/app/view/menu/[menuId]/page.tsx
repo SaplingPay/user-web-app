@@ -18,6 +18,8 @@ const Page = (props: Props) => {
     const [dietaryFilter, setDietaryFilter] = useState<any[]>([])
     const [allergenFilter, setAllergenFilter] = useState<any[]>([])
 
+    const [favorites, setFavorites] = useState<any[]>([])
+
     useEffect(() => {
         getMenu(props.params.menuId)
     }, [])
@@ -45,7 +47,6 @@ const Page = (props: Props) => {
             handleResize()
             window.addEventListener('resize', handleResize)
             return () => window.removeEventListener('resize', handleResize)
-            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [])
         return width
     }
@@ -56,7 +57,7 @@ const Page = (props: Props) => {
         <main style={{ display: "flex", flexDirection: "column", overflow: "hidden" }}>
             <Header menu={menu} />
             <RestaurantInfo menu={menu} setDietaryFilter={setDietaryFilter} setAllergenFilter={setAllergenFilter} />
-            <MenuCategories menu={menu} dietaryFilter={dietaryFilter} allergenFilter={allergenFilter} />
+            <MenuCategories menu={menu} dietaryFilter={dietaryFilter} allergenFilter={allergenFilter} setFavorites={setFavorites} />
 
         </main > :
         <div style={{ textAlign: "center", padding: "5em" }}>

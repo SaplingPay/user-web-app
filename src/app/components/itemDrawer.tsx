@@ -1,28 +1,29 @@
 'use client'
-import { DownCircleOutlined, DownOutlined } from '@ant-design/icons'
+import { DownCircleOutlined, DownOutlined, HeartOutlined, HeartTwoTone } from '@ant-design/icons'
 import { FloatButton, Image, Space, Tag } from 'antd'
 import React, { useEffect, useState } from 'react'
 
 type Props = {
     item: any
     setVisible: any
+    setFavorites: any
 }
 
 const DB_STORAGE_URL = process.env.DB_STORAGE_URL
 
 const ItemDrawer = (props: Props) => {
-    // console.log("ItemDrawer props", props)
-
-
     if (props.item) {
         return (
             <div style={{ paddingBottom: "2em" }}>
-                <div>
+                <div style={{ position: "relative" }}>
                     <img
                         style={{ height: "50vh", objectFit: "cover" }}
                         src={DB_STORAGE_URL + props.item.image_url}
                         width="100%"
                     />
+                    <div style={{ position: "absolute", bottom: "0", right: "0", padding: "1.5em" }}>
+                        <HeartTwoTone style={{ fontSize: "2em" }} twoToneColor="red" onClick={() => props.setVisible(false)} />
+                    </div>
                 </div>
                 <div style={{ padding: "2vh 2vh 0 2vh ", marginBottom: "0" }}>
                     <div style={{ display: "flex" }}>

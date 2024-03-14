@@ -22,6 +22,7 @@ type Props = {
     filter: any,
     allergenFilter: any[]
     dietaryFilter: any[]
+    setFavorites: any
 }
 
 const DishGallery = (props: Props) => {
@@ -134,7 +135,7 @@ const DishGallery = (props: Props) => {
                     icon={<DownOutlined />}
                     style={{ top: "1em", right: "1em", position: "absolute" }}
                     onClick={() => setVisible(false)} />
-                <ItemDrawer item={currentItem} setVisible={setVisible} />
+                <ItemDrawer item={currentItem} setVisible={setVisible} setFavorites={props.setFavorites} />
             </Drawer>
 
         </div>
