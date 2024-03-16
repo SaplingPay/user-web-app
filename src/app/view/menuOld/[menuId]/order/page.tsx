@@ -27,7 +27,7 @@ const OrderItem = (item: MenuItem) => {
             <div style={{ display: "flex" }}>
                 <Link href="/items/1">
                     <Image
-                        src={DB_STORAGE_URL + item.image_url}
+                        src={(item?.image_url as string).includes('amazonaws.com') ? item.image_url : DB_STORAGE_URL + item.image_url}
                         preview={false}
                         style={{ height: "25vw", width: "25vw" }}
                     />
@@ -164,7 +164,7 @@ const OrderPage = (props: Props) => {
                             <div style={{ display: "flex" }}>
                                 <Link href={`/view/menu/${menuId}/item/${item[0].uuid}`}>
                                     <Image
-                                        src={DB_STORAGE_URL + item[0].image_url}
+                                        src={(item[0]?.image_url as string).includes('amazonaws.com') ? item[0].image_url : DB_STORAGE_URL + item[0].image_url}
                                         preview={false}
                                         style={{ height: "25vw", width: "25vw" }}
                                     />

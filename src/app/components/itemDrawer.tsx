@@ -20,7 +20,7 @@ const ItemDrawer = (props: Props) => {
                 <div>
                     <img
                         style={{ height: "50vh", objectFit: "cover" }}
-                        src={DB_STORAGE_URL + props.item.image_url}
+                        src={props?.item?.image_url?.includes('amazonaws.com') ? props.item.image_url.includes('amazonaws.com') : DB_STORAGE_URL + props.item.image_url}
                         width="100%"
                     />
                 </div>
