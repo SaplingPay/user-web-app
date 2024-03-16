@@ -14,7 +14,7 @@ const Header = (props: Props) => {
     return (
         <div style={{ width: "100%", height: "30vh", position: "relative" }}>
             {props.menu ? <BlurhashImage
-                src={props.menu.banner_url ? DB_STORAGE_URL + props.menu.banner_url : "/banner1.png"}
+                src={props.menu.banner_url ? props.menu.banner_url.includes('amazonaws.com') ? props.menu.banner_url : DB_STORAGE_URL + props.menu.banner_url : "/banner1.png"}
                 style={{ height: "100%", width: "100%", objectFit: "cover", zIndex: "1" }}
                 blurhash={props.menu.blurhash}
             /> : ""}

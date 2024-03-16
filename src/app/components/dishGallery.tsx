@@ -99,7 +99,7 @@ const DishGallery = (props: Props) => {
                                 
                             </Link> */}
                             <BlurhashImage
-                                src={DB_STORAGE_URL + item.image_url}
+                                src={item?.image_url?.includes('amazonaws.com') ? item.image_url : DB_STORAGE_URL + item.image_url}
                                 height={'100%'}
                                 width={'100%'}
                                 style={{ objectFit: "cover" }}
