@@ -11,7 +11,7 @@ type Props = {
 const DB_STORAGE_URL = process.env.DB_STORAGE_URL
 
 const ItemDrawer = (props: Props) => {
-    console.log("ItemDrawer props", props)
+    // console.log("ItemDrawer props", props)
 
 
     if (props.item) {
