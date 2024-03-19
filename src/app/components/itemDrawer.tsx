@@ -11,7 +11,7 @@ type Props = {
 const DB_STORAGE_URL = process.env.DB_STORAGE_URL
 
 const ItemDrawer = (props: Props) => {
-    // console.log("ItemDrawer props", props)
+    console.log("ItemDrawer props", props)
 
 
     if (props.item) {
@@ -20,7 +20,7 @@ const ItemDrawer = (props: Props) => {
                 <div>
                     <img
                         style={{ height: "50vh", objectFit: "cover" }}
-                        src={props?.item?.image_url?.includes('amazonaws.com') ? props.item.image_url.includes('amazonaws.com') : DB_STORAGE_URL + props.item.image_url}
+                        src={props.item?.image_url?.includes('amazonaws.com') ? props.item.image_url : DB_STORAGE_URL + props.item.image_url}
                         width="100%"
                     />
                 </div>
