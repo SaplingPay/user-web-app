@@ -7,6 +7,7 @@ import { ConfigProvider } from "antd";
 import { OrderStoreProvider } from "@/utils/provider/order-store-provider";
 
 import { Epilogue } from 'next/font/google'
+import Navbar from "./components/navbar";
 
 
 // const inter = Inter({ subsets: ["latin"] });
@@ -30,7 +31,6 @@ export default function RootLayout({
     <OrderStoreProvider>
       <html lang="en" className={epilogue.className}>
         <body>
-
           <AntdRegistry>
             <ConfigProvider
               theme={{
@@ -42,7 +42,7 @@ export default function RootLayout({
             >
 
               {children}
-
+              <Navbar items={["home", "saved"]} selected="home" />
             </ConfigProvider>
           </AntdRegistry>
         </body>
