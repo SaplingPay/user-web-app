@@ -31,9 +31,7 @@ const FilterDrawer = (props: Props) => {
             console.log("dietaryRestrictions:", dietaryRestrictions)
             setDietaryRestrictions(dietaryRestrictions)
         }
-
     }, [props])
-
 
     const handleDietaryFilter = (tag: string, checked: boolean) => {
         const nextSelectedTags = checked
@@ -57,7 +55,7 @@ const FilterDrawer = (props: Props) => {
         <div style={{ padding: "0 2vh 6em 2vh ", marginBottom: "0", display: "flex", flexDirection: "column", height: "100%" }}>
             <Title
                 level={3}
-                style={{ marginBottom: "0", marginTop: "1em", marginRight: "1.5em" }}>Add your preferences to help us customize your menu ✨ </Title>
+                style={{ marginBottom: "0", marginTop: "1em", marginRight: "1.5em" }}>Add your preferences to help us customize your menu ✨</Title>
 
             <Title level={4} style={{ color: "black" }} >Dietary 🍴</Title>
             <Space wrap>
