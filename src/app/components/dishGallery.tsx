@@ -7,6 +7,7 @@ import { createStyles, useTheme } from 'antd-style';
 import FilterDrawer from './filterDrawer'
 import { DownOutlined } from '@ant-design/icons';
 import { BlurhashImage } from './blurhashImage';
+import { analytics } from '@/utils/analytics';
 
 const gridStyle: React.CSSProperties = {
     textAlign: 'center',
@@ -27,6 +28,7 @@ type Props = {
 const DishGallery = (props: Props) => {
     const [currentItem, setCurrentItem] = React.useState<any>(null)
     const [filteredItems, setFilteredItems] = React.useState<any[]>([])
+    const [start, setStart] = React.useState(0)
 
     useEffect(() => {
         if (props.menuItems) {
@@ -88,7 +90,28 @@ const DishGallery = (props: Props) => {
         setCurrentItem(item)
         setVisible(true)
 
+        analytics.track("menuItemClicked", {
+            menuId: props.menu.id,
+            itemId: item.id
+        })
+
+        setStart(new Date().getTime())
     }
+
+    const closeDrawer = () => {
+        const end = new Date().getTime();
+        const duration = end - start;
+        console.log("Duration", duration)
+
+        analytics.track("menuItemViewDuration", {
+            menuId: props.menu.id,
+            itemId: currentItem.id,
+            duration: duration
+        })
+
+        setVisible(false)
+    }
+
     return (
         <div>
             <Card style={{ marginRight: "-1px", }}>
@@ -119,21 +142,13 @@ const DishGallery = (props: Props) => {
                 closable={true}
                 open={visible}
                 key="bottom"
-                onClose={() => setVisible(false)}
+                onClose={closeDrawer}
                 styles={drawerStyles}
-
-            // extra={
-            //     <Space>
-            //         <Button type="primary" onClick={() => setVisible(false)}>
-            //             Add to Order
-            //         </Button>
-            //     </Space>
-            // }
             >
                 <FloatButton
                     icon={<DownOutlined />}
                     style={{ top: "1em", right: "1em", position: "absolute" }}
-                    onClick={() => setVisible(false)} />
+                    onClick={closeDrawer} />
                 <ItemDrawer item={currentItem} setVisible={setVisible} />
             </Drawer>
 
