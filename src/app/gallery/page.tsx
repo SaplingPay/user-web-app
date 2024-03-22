@@ -62,7 +62,7 @@ export default function Home() {
                 {menus.map((item: any) => {
                     return (
                         <Card.Grid key={item.id} style={gridStyle} hoverable={false}>
-                            <Link href={`/view/menu/${item.id}`} key={item.id} style={{ marginBottom: "2vh" }}>
+                            <Link href={`/view/menu/${item.id}`} key={item.id} style={{ marginBottom: "2vh" }} prefetch={false}>
                                 <img
                                     src={item?.banner_url?.includes('amazonaws.com') ? item.banner_url : DB_STORAGE_URL + item.banner_url}
                                     height={'100%'}
