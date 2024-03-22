@@ -2,6 +2,7 @@
 import Header from '@/app/components/header'
 import MenuCategories from '@/app/components/menuCategories'
 import RestaurantInfo from '@/app/components/restaurantInfo'
+import { analytics } from '@/utils/analytics'
 import Title from 'antd/es/typography/Title'
 import axios from 'axios'
 import React, { use, useEffect, useState } from 'react'
@@ -20,6 +21,11 @@ const Page = (props: Props) => {
 
     useEffect(() => {
         getMenu(props.params.menuId)
+        // console.log(window.location.pathname)
+        // analytics.track("menuview", {
+        //     page: window.location.pathname,
+        //     menuId: props.params.menuId
+        // })
     }, [])
 
     const getMenu = async (menu_id: any) => {
@@ -57,7 +63,6 @@ const Page = (props: Props) => {
             <Header menu={menu} />
             <RestaurantInfo menu={menu} setDietaryFilter={setDietaryFilter} setAllergenFilter={setAllergenFilter} />
             <MenuCategories menu={menu} dietaryFilter={dietaryFilter} allergenFilter={allergenFilter} />
-
         </main > :
         <div style={{ textAlign: "center", padding: "5em" }}>
             <Title level={2}>Please use a mobile device to view this page.</Title>

@@ -6,7 +6,8 @@ const nextConfig = {
         NEXT_PUBLIC_SUPABASE_BUCKET: process.env.NEXT_PUBLIC_SUPABASE_BUCKET,
         UPSTASH_REDIS_KEY: process.env.UPSTASH_REDIS_KEY,
         UPSTASH_REDIS_URL: process.env.UPSTASH_REDIS_URL,
-    }
+    },
+    experimental: { optimisticClientCache: false, }
 };
 
 export default nextConfig;
